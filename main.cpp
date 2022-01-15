@@ -58,6 +58,8 @@ void watchTimers() {
                     delete timer.second.coolDown;
                     timer.second.coolDown = nullptr;
                     timer.second.start = std::chrono::system_clock::now();
+                    timer.second.done = false;
+                    std::cout << "\rTimer '" << timer.first << "' was reset automatically." << std::endl << "> " << std::flush;
                 }
             } else if (timer.second.start + timer.second.length < std::chrono::system_clock::now()) {
                 timer.second.done = true;
@@ -231,6 +233,7 @@ int main() {
                     delete timers[command[1]].coolDown;
                     timers[command[1]].coolDown = nullptr;
                     timers[command[1]].start = std::chrono::system_clock::now();
+                    timers[command[1]].done = false;
                     std::cout << "Timer '" << name << "' reset" << std::endl;
                 } else {
                     std::cout << "Timer '" << name << "' not found" << std::endl;
